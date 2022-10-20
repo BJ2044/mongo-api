@@ -16,3 +16,12 @@ export async function getAllFurniture(req, res) {
     const collection = await db.collection("furniture").find().toArray()
     res.send(collection)
 }
+
+export async function findFurnitureByType(req, res) {
+    const db = dbConnect()
+    const { search } = req.params
+    const collection = await db.collection("furniture")
+    .find({ type: search })
+    .toArray()
+    res.send(collection)
+}
